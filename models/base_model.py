@@ -11,9 +11,9 @@ class BaseModel:
             for key, value in kwargs.items():
                 if key != "__class__":
                     setattr(self, key, value)
-	self.created_at = datetime.datetime.strptime(
-		kwargs["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
-	self.updated_at = datetime.datetime.strptime(
+            self.created_at = datetime.datetime.strptime(
+                kwargs["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
+            self.updated_at = datetime.datetime.strptime(
                 kwargs["updated_at"], "%Y-%m-%dT%H:%M:%S.%f")
         else:
             self.id = str(uuid.uuid4())
@@ -21,9 +21,8 @@ class BaseModel:
             self.updated_at = datetime.now()
             storage.new(self)
 
-
     def __str__(self):
-        return ("[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__))
+        return (f"[{type(self).__name__}], ({self.id}), {self.__dict__}")
 
     def save(self):
         self.updated_at = datetime.now()
