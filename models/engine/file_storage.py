@@ -31,8 +31,8 @@ class FileStorage:
     def reload(self):
         """reload model the of from path"""
         try:
-            with open(self.__file_path) as f:
+            with open(FileStorage.__file_path, "r") as f:
                 for key, value in json.load(f).items():
-                    self.__objects[key] = eval(value["__class__"])(**value)
-        except Exception:
-            pass
+                    FileStorage.__objects[key] = eval(value["__class__"])(**value)
+        except FileNotFoundError:
+            return
