@@ -33,6 +33,6 @@ class FileStorage:
         try:
             with open(FileStorage.__file_path, "r") as f:
                 for key, value in json.load(f).items():
-                    FileStorage.__objects[key] = eval(value["__class__"])(**value)
+                    FileStorage.__objects[key] = eval(value['__class__'])(**value)
         except FileNotFoundError:
             return
