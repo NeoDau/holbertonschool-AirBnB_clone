@@ -57,7 +57,7 @@ class HBNBCommand(cmd.Cmd):
                     print("** no istance fund **")
             except Exception:
                 print("** class doesn't exist **")
-    
+
     def do_destroy(self, arg):
         """del instance based the class"""
         arg = arg.split()
@@ -86,32 +86,28 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """update a istance based on the class name and id"""
-	arg = arg.split()
+        args = arg.split()
 
-	if len(arg) == 0:
-	    print("** class name missing **")
-        elif len(arg) == 1:
+        if len(args) == 0:
+            print("** class name missing **")
+        elif len(args) == 1:
             print("** instance id missing **")
-        elif len(arg) == 2:
+        elif len(args) == 2:
             print("** attribute name missing **")
-        elif len(arg) == 3:
+        elif len(args) == 3:
             print("** value missing **")
-
         else:
-
             try:
-                eval(arg[0])
-
+                eval(args[0])
                 try:
                     for key, value in storage.all().items():
                         obj = value
                         if key == f"{string_split[0]}.{string_split[1]}":
-                            setattr(obj, arg[2], arg[3])
+                            setattr(obj, args[2], args[3])
                 except Exception:
                     print("** no instance found **")
             except Exception:
-		print("** class doesn't exist **")
- 
+                print("** class doesn't exist **")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     HBNBCommand().cmdloop()
